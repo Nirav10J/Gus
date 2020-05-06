@@ -1,0 +1,5 @@
+E:\CusJoTest\Cus.BusinessEntity\bin\Debug\Cus.BusinessEntity.dll
+E:\CusJoTest\Cus.BusinessEntity\bin\Debug\Cus.BusinessEntity.pdb
+E:\CusJoTest\Cus.BusinessEntity\obj\Debug\Cus.BusinessEntity.csproj.CoreCompileInputs.cache
+E:\CusJoTest\Cus.BusinessEntity\obj\Debug\Cus.BusinessEntity.dll
+E:\CusJoTest\Cus.BusinessEntity\obj\Debug\Cus.BusinessEntity.pdb

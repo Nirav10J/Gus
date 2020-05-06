@@ -1,0 +1,5 @@
+E:\CusJoTest\Cus.Common\bin\Debug\Cus.Common.dll
+E:\CusJoTest\Cus.Common\bin\Debug\Cus.Common.pdb
+E:\CusJoTest\Cus.Common\obj\Debug\Cus.Common.csproj.CoreCompileInputs.cache
+E:\CusJoTest\Cus.Common\obj\Debug\Cus.Common.dll
+E:\CusJoTest\Cus.Common\obj\Debug\Cus.Common.pdb

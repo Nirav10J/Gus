@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EVCdb3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblCustomer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="PostalCode" Type="Int32" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RFID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="EmailVerify" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserType" Type="Boolean" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCity" Relationship="EVCdb3Model.FK_tblCustomer_tblCity" FromRole="tblCustomer" ToRole="tblCity" />
+    <NavigationProperty Name="tblState" Relationship="EVCdb3Model.FK_tblCustomer_tblState" FromRole="tblCustomer" ToRole="tblState" />
+  </EntityType>
+  <EntityContainer Name="EVCdb3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblCustomers" EntityType="Self.tblCustomer" />
+    <EntitySet Name="tblCities" EntityType="EVCdb3Model.tblCity" />
+    <EntitySet Name="tblStates" EntityType="EVCdb3Model.tblState" />
+    <AssociationSet Name="FK_tblCity_tblState" Association="EVCdb3Model.FK_tblCity_tblState">
+      <End Role="tblState" EntitySet="tblStates" />
+      <End Role="tblCity" EntitySet="tblCities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCustomer_tblCity" Association="EVCdb3Model.FK_tblCustomer_tblCity">
+      <End Role="tblCity" EntitySet="tblCities" />
+      <End Role="tblCustomer" EntitySet="tblCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCustomer_tblState" Association="EVCdb3Model.FK_tblCustomer_tblState">
+      <End Role="tblState" EntitySet="tblStates" />
+      <End Role="tblCustomer" EntitySet="tblCustomers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblCity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblState" Relationship="EVCdb3Model.FK_tblCity_tblState" FromRole="tblCity" ToRole="tblState" />
+    <NavigationProperty Name="tblCustomers" Relationship="EVCdb3Model.FK_tblCustomer_tblCity" FromRole="tblCity" ToRole="tblCustomer" />
+  </EntityType>
+  <EntityType Name="tblState">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCities" Relationship="EVCdb3Model.FK_tblCity_tblState" FromRole="tblState" ToRole="tblCity" />
+    <NavigationProperty Name="tblCustomers" Relationship="EVCdb3Model.FK_tblCustomer_tblState" FromRole="tblState" ToRole="tblCustomer" />
+  </EntityType>
+  <Association Name="FK_tblCity_tblState">
+    <End Type="EVCdb3Model.tblState" Role="tblState" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EVCdb3Model.tblCity" Role="tblCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblState">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCity">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCustomer_tblCity">
+    <End Type="EVCdb3Model.tblCity" Role="tblCity" Multiplicity="1" />
+    <End Type="EVCdb3Model.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCustomer">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCustomer_tblState">
+    <End Type="EVCdb3Model.tblState" Role="tblState" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EVCdb3Model.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblState">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCustomer">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

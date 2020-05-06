@@ -1,0 +1,17 @@
+E:\CusJoTest\Cus.Business\obj\Debug\Cus.Business.csprojAssemblyReference.cache
+E:\CusJoTest\Cus.Business\obj\Debug\Cus.Business.csproj.CoreCompileInputs.cache
+E:\CusJoTest\Cus.Business\bin\Debug\Cus.Business.dll
+E:\CusJoTest\Cus.Business\bin\Debug\Cus.Business.pdb
+E:\CusJoTest\Cus.Business\bin\Debug\AutoMapper.dll
+E:\CusJoTest\Cus.Business\bin\Debug\Cus.BusinessEntity.dll
+E:\CusJoTest\Cus.Business\bin\Debug\Cus.Data.dll
+E:\CusJoTest\Cus.Business\bin\Debug\EntityFramework.dll
+E:\CusJoTest\Cus.Business\bin\Debug\Cus.BusinessEntity.pdb
+E:\CusJoTest\Cus.Business\bin\Debug\Cus.Data.pdb
+E:\CusJoTest\Cus.Business\bin\Debug\Cus.Data.dll.config
+E:\CusJoTest\Cus.Business\bin\Debug\AutoMapper.pdb
+E:\CusJoTest\Cus.Business\bin\Debug\AutoMapper.xml
+E:\CusJoTest\Cus.Business\bin\Debug\EntityFramework.xml
+E:\CusJoTest\Cus.Business\obj\Debug\Cus.Business.csproj.CopyComplete
+E:\CusJoTest\Cus.Business\obj\Debug\Cus.Business.dll
+E:\CusJoTest\Cus.Business\obj\Debug\Cus.Business.pdb

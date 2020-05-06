@@ -1,0 +1,11 @@
+E:\CusJoTest\Cus.Data\bin\Debug\Cus.Data.dll.config
+E:\CusJoTest\Cus.Data\bin\Debug\Cus.Data.dll
+E:\CusJoTest\Cus.Data\bin\Debug\Cus.Data.pdb
+E:\CusJoTest\Cus.Data\bin\Debug\EntityFramework.dll
+E:\CusJoTest\Cus.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\CusJoTest\Cus.Data\bin\Debug\EntityFramework.xml
+E:\CusJoTest\Cus.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\CusJoTest\Cus.Data\obj\Debug\Cus.Data.csproj.CoreCompileInputs.cache
+E:\CusJoTest\Cus.Data\obj\Debug\Cus.Data.csproj.CopyComplete
+E:\CusJoTest\Cus.Data\obj\Debug\Cus.Data.dll
+E:\CusJoTest\Cus.Data\obj\Debug\Cus.Data.pdb

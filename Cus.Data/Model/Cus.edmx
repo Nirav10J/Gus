@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EVCdb3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="PostalCode" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RFID" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="EmailVerify" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="UserType" Type="bit" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCity_tblState">
+          <End Role="tblState" Type="Self.tblState" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblCity">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="1" />
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblState">
+          <End Role="tblState" Type="Self.tblState" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EVCdb3ModelStoreContainer">
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblCity_tblState" Association="Self.FK_tblCity_tblState">
+            <End Role="tblState" EntitySet="tblState" />
+            <End Role="tblCity" EntitySet="tblCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblCity" Association="Self.FK_tblCustomer_tblCity">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblState" Association="Self.FK_tblCustomer_tblState">
+            <End Role="tblState" EntitySet="tblState" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EVCdb3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="PostalCode" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RFID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="EmailVerify" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserType" Type="Boolean" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCity" Relationship="EVCdb3Model.FK_tblCustomer_tblCity" FromRole="tblCustomer" ToRole="tblCity" />
+          <NavigationProperty Name="tblState" Relationship="EVCdb3Model.FK_tblCustomer_tblState" FromRole="tblCustomer" ToRole="tblState" />
+        </EntityType>
+        <EntityContainer Name="EVCdb3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCustomers" EntityType="Self.tblCustomer" />
+          <EntitySet Name="tblCities" EntityType="EVCdb3Model.tblCity" />
+          <EntitySet Name="tblStates" EntityType="EVCdb3Model.tblState" />
+          <AssociationSet Name="FK_tblCity_tblState" Association="EVCdb3Model.FK_tblCity_tblState">
+            <End Role="tblState" EntitySet="tblStates" />
+            <End Role="tblCity" EntitySet="tblCities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblCity" Association="EVCdb3Model.FK_tblCustomer_tblCity">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblState" Association="EVCdb3Model.FK_tblCustomer_tblState">
+            <End Role="tblState" EntitySet="tblStates" />
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblState" Relationship="EVCdb3Model.FK_tblCity_tblState" FromRole="tblCity" ToRole="tblState" />
+          <NavigationProperty Name="tblCustomers" Relationship="EVCdb3Model.FK_tblCustomer_tblCity" FromRole="tblCity" ToRole="tblCustomer" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCities" Relationship="EVCdb3Model.FK_tblCity_tblState" FromRole="tblState" ToRole="tblCity" />
+          <NavigationProperty Name="tblCustomers" Relationship="EVCdb3Model.FK_tblCustomer_tblState" FromRole="tblState" ToRole="tblCustomer" />
+        </EntityType>
+        <Association Name="FK_tblCity_tblState">
+          <End Type="EVCdb3Model.tblState" Role="tblState" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EVCdb3Model.tblCity" Role="tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblCity">
+          <End Type="EVCdb3Model.tblCity" Role="tblCity" Multiplicity="1" />
+          <End Type="EVCdb3Model.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblState">
+          <End Type="EVCdb3Model.tblState" Role="tblState" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EVCdb3Model.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EVCdb3ModelStoreContainer" CdmEntityContainer="EVCdb3Entities">
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="EVCdb3Model.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EmailVerify" ColumnName="EmailVerify" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="EVCdb3Model.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="EVCdb3Model.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
